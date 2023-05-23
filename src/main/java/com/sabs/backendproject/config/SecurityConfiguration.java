@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         .csrf()
         .disable()
         .authorizeHttpRequests()
-        .requestMatchers("/api/v1/auth/**")
+        .requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/v3/api-docs/**")   // IMPORTANT: need to add '"/v3/api-docs/**"', else 'Failed to load remote configuration.' for springboot swagger3
         .permitAll()
         .anyRequest()
         .authenticated()
