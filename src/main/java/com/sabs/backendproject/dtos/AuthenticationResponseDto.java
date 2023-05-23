@@ -1,4 +1,4 @@
-package com.sabs.backendproject.auth;
+package com.sabs.backendproject.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-// TODO: make it as dto & store under dtos/
-public class AuthenticationResponse {
+public class AuthenticationResponseDto {
 
   private String token;
 }
