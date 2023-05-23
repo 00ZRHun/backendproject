@@ -1,9 +1,9 @@
 package com.sabs.backendproject.controllers;
 
-import com.sabs.backendproject.auth.AuthenticationRequest;
-import com.sabs.backendproject.auth.AuthenticationResponse;
-import com.sabs.backendproject.auth.AuthenticationService;
-import com.sabs.backendproject.auth.RegisterRequest;
+import com.sabs.backendproject.dtos.AuthenticationRequestDto;
+import com.sabs.backendproject.dtos.AuthenticationResponseDto;
+import com.sabs.backendproject.services.AuthenticationService;
+import com.sabs.backendproject.dtos.RegisterRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,14 +19,14 @@ public class AuthenticationController {
   private final AuthenticationService service;
 
   @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegisterRequest request
+  public ResponseEntity<AuthenticationResponseDto> register(
+      @RequestBody RegisterRequestDto request
   ) {
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/login")
-  public ResponseEntity<AuthenticationResponse> authenticate(
-      @RequestBody AuthenticationRequest request
+  public ResponseEntity<AuthenticationResponseDto> authenticate(
+      @RequestBody AuthenticationRequestDto request
   ) {
     return ResponseEntity.ok(service.authenticate(request));
   }
