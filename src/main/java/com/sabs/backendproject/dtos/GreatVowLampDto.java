@@ -17,4 +17,3 @@ public class GreatVowLampDto {
     private LocalDateTime updatedAt;
 
 }
-
