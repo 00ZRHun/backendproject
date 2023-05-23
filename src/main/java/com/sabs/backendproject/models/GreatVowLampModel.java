@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +15,8 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "greatVowLamp")
+@SQLDelete(sql = "UPDATE great_vow_lamp SET deleted_at = to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS')::timestamp WHERE id=?")
+@Where(clause = "deleted_at IS NULL")
 public class GreatVowLampModel {
 
     @Id
@@ -26,13 +30,17 @@ public class GreatVowLampModel {
     private Integer columnNo;
 
     @CreationTimestamp
-    @Column(name = "created")
+    @Column(name = "createdAt")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime created = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @UpdateTimestamp
-    @Column(name = "updated")
+    @Column(name = "updatedAt")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updated;
+    private LocalDateTime updatedAt;
+
+    @Column(name = "deletedAt")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime deletedAt = null;
     
 }

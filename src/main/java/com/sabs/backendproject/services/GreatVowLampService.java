@@ -23,7 +23,7 @@ public class GreatVowLampService {
     // === CRUD ===
     // 1. Read all entries of great vow lamp
     public List<GreatVowLampModel> getAllGreatVowLamps() {
-        return itemRepo.findAll(Sort.by("created").descending());
+        return itemRepo.findAll(Sort.by("createdAt").descending());
     }
 
     // 2. Read entry of great vow lamp with particular id
@@ -43,7 +43,7 @@ public class GreatVowLampService {
     // 4. Update entry of great vow lamp with particular id
     public GreatVowLampModel updateGreatVowLamp(GreatVowLampModel item) {
         GreatVowLampModel itemGet = getGreatVowLamp(item.getId());
-        item.setCreated(itemGet.getCreated());
+        item.setCreatedAt(itemGet.getCreatedAt());
         return itemRepo.save(item);
     }
 

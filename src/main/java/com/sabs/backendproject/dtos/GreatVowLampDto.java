@@ -12,9 +12,9 @@ public class GreatVowLampDto {
     private Integer rowNo;
     private Integer columnNo;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime created = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updated;
+    private LocalDateTime updatedAt;
 
 }
 
