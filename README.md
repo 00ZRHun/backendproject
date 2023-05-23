@@ -4,8 +4,9 @@
   - [] wait for reply
 - [] Database
   - [] wait for reply
-- [...] add Swagger
-- [...] soft delete
+- [x] setup Spring Boot with Postgres database
+- [x] add Swagger API documentation
+- [x] soft delete
 - [] Login module
   - [x] (Register)
   - [x] Login
