@@ -6,7 +6,7 @@
   - [] wait for reply
 - [x] setup Spring Boot with Postgres database
 - [x] add Swagger API documentation
-- [x] soft delete
+- [x] add soft delete
 - [] Login module
   - [x] (Register)
   - [x] Login

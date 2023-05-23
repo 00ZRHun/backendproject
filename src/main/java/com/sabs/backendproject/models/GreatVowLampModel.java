@@ -10,8 +10,6 @@ import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 
-// TODO: add soft delete (annotation + deleted_at)
-
 @Data
 @Entity
 @Table(name = "greatVowLamp")
