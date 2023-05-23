@@ -1,6 +1,9 @@
-package com.sabs.backendproject.auth;
+package com.sabs.backendproject.services;
 
 import com.sabs.backendproject.config.JwtService;
+import com.sabs.backendproject.dtos.AuthenticationRequestDto;
+import com.sabs.backendproject.dtos.AuthenticationResponseDto;
+import com.sabs.backendproject.dtos.RegisterRequestDto;
 import com.sabs.backendproject.enums.RoleEnum;
 import com.sabs.backendproject.models.UserModel;
 import com.sabs.backendproject.repos.UserRepo;
@@ -18,7 +21,7 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
-  public AuthenticationResponse register(RegisterRequest request) {
+  public AuthenticationResponseDto register(RegisterRequestDto request) {
     var user = UserModel.builder()
         .firstname(request.getFirstname())
         .lastname(request.getLastname())
@@ -28,12 +31,12 @@ public class AuthenticationService {
         .build();
     repository.save(user);
     var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
+    return AuthenticationResponseDto.builder()
         .token(jwtToken)
         .build();
   }
 
-  public AuthenticationResponse authenticate(AuthenticationRequest request) {
+  public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
             request.getEmail(),
@@ -43,7 +46,7 @@ public class AuthenticationService {
     var user = repository.findByEmail(request.getEmail())
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
+    return AuthenticationResponseDto.builder()
         .token(jwtToken)
         .build();
   }
