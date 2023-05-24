@@ -17,7 +17,7 @@ public class DevoteeDto {
     private String receiptNo;
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate receiptDate;
-    private BigDecimal amount;   // TODO: BigDecimal(2)
+    private BigDecimal amount;
     private PaymentMethodEnum paymentMethod;
     private BankEnum bank;
     private String chequeNo ;
