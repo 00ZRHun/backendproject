@@ -28,17 +28,17 @@ public class GreatVowLampModel {
     private Integer columnNo;
 
     @CreationTimestamp
-    @Column(name = "createdAt")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "createdAt")
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @UpdateTimestamp
-    @Column(name = "updatedAt")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
-    @Column(name = "deletedAt")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "deletedAt")
     private LocalDateTime deletedAt = null;
     
 }
