@@ -39,7 +39,7 @@ public class DevoteeModel {
     private LocalDate receiptDate;
 
     @Column(name = "amount")
-    private BigDecimal amount;   // TODO: BigDecimal(2)
+    private BigDecimal amount;
 
     @Column(name = "paymentMethod")
     private PaymentMethodEnum paymentMethod;
@@ -86,7 +86,9 @@ public class DevoteeModel {
     @Column(name = "devoteeName")
     private String devoteeName;
 
-    @Column(name = "remark", columnDefinition = "text")   // TODO: double chk it
+    //@Column(name = "remark", length = 2048)   // OPT: 255 (default), 1024 // increase column length // ERR: value too long for type character varying(255)
+    //@Lob   // for large size
+    @Column(name = "remark", columnDefinition = "text")   // for unlimited size
     private String remark;
 
     @JsonFormat(pattern = "MM/dd/yyyy")
