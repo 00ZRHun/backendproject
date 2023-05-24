@@ -27,6 +27,12 @@ public class GreatVowLampModel {
     @Column(name = "columnNo")
     private Integer columnNo;
 
+    // Foreign Key
+    // default fetch type for ManyToOne: EAGER
+    @ManyToOne   // OPT: (fetch = FetchType.LAZY)
+    @JoinColumn(name = "devoteeId", referencedColumnName = "id")
+    private DevoteeModel devotee = null;
+
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "createdAt")

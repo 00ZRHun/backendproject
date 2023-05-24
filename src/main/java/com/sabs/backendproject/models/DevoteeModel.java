@@ -1,6 +1,7 @@
 package com.sabs.backendproject.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sabs.backendproject.enums.BankEnum;
 import com.sabs.backendproject.enums.PaymentMethodEnum;
 import jakarta.persistence.*;
@@ -13,6 +14,8 @@ import org.hibernate.annotations.Where;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -94,8 +97,12 @@ public class DevoteeModel {
     @Column(name = "expiryDate")
     private LocalDate expiryDate;
 
-    @Column(name = "lampNo")
-    private String lampNo;
+    /*@Column(name = "lampNo")
+    private String lampNo;*/
+    // hidden field(s)
+    @JsonIgnore
+    @OneToMany(mappedBy = "devotee")
+    private Set<GreatVowLampModel> greatVowLamps = new HashSet<>();
 
     @Column(name = "registrationDate")
     private String registrationDate;
