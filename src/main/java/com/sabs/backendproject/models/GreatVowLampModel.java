@@ -1,6 +1,7 @@
 package com.sabs.backendproject.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sabs.backendproject.enums.GreatVowLampStatusEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,6 +27,9 @@ public class GreatVowLampModel {
 
     @Column(name = "columnNo")
     private Integer columnNo;
+
+    @Column(name = "status")
+    private GreatVowLampStatusEnum status;
 
     // Foreign Key
     // default fetch type for ManyToOne: EAGER
