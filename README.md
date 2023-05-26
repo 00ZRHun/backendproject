@@ -8,6 +8,10 @@
 6. ERD: https://drive.google.com/file/d/1Ri4CAVvogZuodx0n93eC9NfH9oT283CA/view?usp=sharing
 7. 
 
+# Commands
+1. pg_dump sabsbe > sabsbe.sql
+   1. export sql into current path
+
 # Question
 - id type: Long or UUID?
 
@@ -76,5 +80,8 @@
     - Search/Filter Criteria Option
   - [x] add enum for BankEnum & PaymentMethodEnum
   - [] Fix
-    - Q: change (devotee has) one to one or one to many (to GreatVowLamp)?
+    - 【】 change (devotee has) one to one (to GreatVowLamp)
+    - 【】 add (customer has) one to many (to GreatVowLamp)
+      - devotee -> 灯上面的人
+      - customer -> 联系人 / 付钱的人
 # backendproject
