@@ -1,8 +1,9 @@
 package com.sabs.backendproject.controllers;
 
-import com.sabs.backendproject.exceptions.GetIdLessThanOneException;
 import com.sabs.backendproject.dtos.GreatVowLampDto;
+import com.sabs.backendproject.exceptions.GetIdLessThanOneException;
 import com.sabs.backendproject.models.GreatVowLampModel;
+import com.sabs.backendproject.services.DevoteeService;
 import com.sabs.backendproject.services.GreatVowLampService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +22,8 @@ public class GreatVowLampController {
 
     @Autowired
     private GreatVowLampService itemService;
+    @Autowired
+    private DevoteeService devoteeService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -72,7 +74,7 @@ public class GreatVowLampController {
     @PatchMapping(value = "/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
-    public ResponseEntity<GreatVowLampDto> updateGreatVowLamp(@RequestBody GreatVowLampDto itemDto) throws UnsupportedEncodingException, GetIdLessThanOneException {
+    public ResponseEntity<GreatVowLampDto> updateGreatVowLamp(@RequestBody GreatVowLampDto itemDto) throws GetIdLessThanOneException {
         GreatVowLampModel item = convertToEntity(itemDto);
         GreatVowLampModel itemUpdated = itemService.updateGreatVowLamp(item);
         return new ResponseEntity<>(convertToDto(itemUpdated), HttpStatus.OK);
@@ -82,7 +84,7 @@ public class GreatVowLampController {
     @DeleteMapping(value = "/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
-    public ResponseEntity<GreatVowLampDto> deleteItem(@PathVariable Long id) throws UnsupportedEncodingException, GetIdLessThanOneException {
+    public ResponseEntity<GreatVowLampDto> deleteItem(@PathVariable Long id) throws GetIdLessThanOneException {
         GreatVowLampModel itemDeleted = itemService.deleteGreatVowLamp(id);
         return new ResponseEntity<>(convertToDto(itemDeleted), HttpStatus.OK);
     }
@@ -95,7 +97,10 @@ public class GreatVowLampController {
 
     // 2. DTO to JPA Entity models
     private GreatVowLampModel convertToEntity(GreatVowLampDto itemDto) {
-        return modelMapper.map(itemDto, GreatVowLampModel.class);
+        GreatVowLampModel map = modelMapper.map(itemDto, GreatVowLampModel.class);
+        // enter id to input entity
+        if (itemDto.getDevoteeId() != null)   map.setDevotee(devoteeService.getDevotee(itemDto.getDevoteeId()));
+        return map;
     }
 
 }
