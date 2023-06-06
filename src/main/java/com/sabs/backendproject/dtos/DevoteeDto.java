@@ -3,11 +3,14 @@ package com.sabs.backendproject.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sabs.backendproject.enums.BankEnum;
 import com.sabs.backendproject.enums.PaymentMethodEnum;
+import com.sabs.backendproject.models.GreatVowLampModel;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class DevoteeDto {
@@ -38,8 +41,9 @@ public class DevoteeDto {
     private LocalDate startDate;
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate expiryDate;
-    private String lampNo;
+    private Set<GreatVowLampModel> greatVowLamps = new HashSet<>();
     private String registrationDate;
+    private Set<String> customerTags = new HashSet<>();
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt = LocalDateTime.now();
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

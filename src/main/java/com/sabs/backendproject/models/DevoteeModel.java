@@ -109,6 +109,10 @@ public class DevoteeModel {
     @Column(name = "registrationDate")
     private String registrationDate;
 
+    // LATER TODO: maybe add one-to-many relationship from DevoteeModel to CustomerTagModel OR use JSON type
+    @Column(name = "customerTags")
+    private Set<String> customerTags = new HashSet<>();
+
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "createdAt")
