@@ -1,0 +1,1 @@
+UPDATE great_vow_lamp SET area='A';
