@@ -9,6 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,11 +23,22 @@ public class GreatVowLampModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "area")
+    private char area;
+
     @Column(name = "rowNo")
     private Integer rowNo;
 
     @Column(name = "columnNo")
     private Integer columnNo;
+
+    // TODO: confirm > add logic in dto2model conversion method
+    // area + rowNo (in 2-4 digits???) + colNo (in 2-4 digits???)
+    @Column(name = "lampNo", unique = true)
+    private String lampNo;
+
+    @Column(name = "price")
+    private BigDecimal price;
 
     @Column(name = "status")
     private GreatVowLampStatusEnum status;
